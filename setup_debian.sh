@@ -12,10 +12,8 @@ exec > >(tee setup_debian.log) 2>&1
 # Set a timeout so the script won't hang up
 timeout=10
 
-# Update and upgrade system
 apt -y update && apt -y full-upgrade
 
-# Install packages
 echo "Installing sudo ..."
 apt install -y sudo
 
@@ -47,15 +45,20 @@ ufw default deny incoming \
 echo "Installing openssh-server ..."
 apt install -y openssh-server
 
+echo "Registring new user ..."
+echo "Insert new username:"
+read user_input
+adduser $user_input
+
+dir_path="/home/$user_input/.ssh"
+mkdir -p $dir_path
+file_path="$dir_path/authorized_keys"
+
 echo "Registering SSH key before deactivating SSH Password Authentication ..."
 echo "Please enter your public key for SSH Public Key Authentication:"
 read user_input
 
-dir_path="/root/.ssh"
-file_path="$dir_path/authorized_keys"
-
 # Add public key to authorized_keys in root
-mkdir -p $dir_path
 cat > $file_path << EOF
 $user_input
 EOF
