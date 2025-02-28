@@ -67,7 +67,7 @@ $user_input
 EOF
 
 echo "Configuring sshd ..."
-file_path="/etc/ssh/sshd_config.d/deactivate_pa.conf"
+file_path="/etc/ssh/sshd_config.d/00-deactivate_pa.conf"
 cat > $file_path << EOF
 PasswordAuthentication no
 EOF
