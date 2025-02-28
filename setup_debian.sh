@@ -50,6 +50,7 @@ echo "Insert new username:"
 read user_input
 useradd -m $user_input
 passwd $user_input
+chsh -s /bin/bash $user_input
 
 sudo usermod -aG sudo $user_input
 
