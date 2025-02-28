@@ -193,4 +193,7 @@ server {
 }
 EOF
 
+file_path="$dir_path/sites-enabled/*"
+rm -f $file_path
+
 systemctl restart nginx
