@@ -48,7 +48,10 @@ apt install -y openssh-server
 echo "Registring new user ..."
 echo "Insert new username:"
 read user_input
-adduser $user_input
+useradd -m $user_input
+passwd $user_input
+
+sudo usermod -aG sudo $user_input
 
 dir_path="/home/$user_input/.ssh"
 mkdir -p $dir_path
