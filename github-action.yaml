@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create private key file
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+        
+      - name: Deployment to server
+        run: |
+          ssh -p 22 -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa USER@HOSTNAME "cd /path/to/directory && git pull && git checkout main"
