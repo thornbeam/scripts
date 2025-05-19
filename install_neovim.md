@@ -12,7 +12,7 @@ mv nvim-linux-x86_64.appimage /opt/nvim/nvim
 
 # And the following line to your shell config (~/.bashrc, ~/.zshrc, ...):
 ```
-#export PATH="$PATH:/opt/nvim/"
+export PATH="$PATH:/opt/nvim/"
 ```
 
 # Set the below with the correct path:
